@@ -1,0 +1,16 @@
+[tool.poetry]
+name = "triplanar_attention_mechanism"
+version = "0.1.0"
+description = "The PyTorch implementation of the triplanar attention mechanism."
+license = "MIT"
+authors = ["Umut Güçlü <u.guclu@donders.ru.nl>"]
+readme = "README.md"
+packages = [{include = "triplanar_attention_mechanism"}]
+
+[tool.poetry.dependencies]
+python = "^3.8"
+torch = "^2.2.1"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
