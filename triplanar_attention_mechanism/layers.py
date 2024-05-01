@@ -32,9 +32,9 @@ class TriplanarAttentionLayer(nn.Module):
         _kwargs = {'kernel_size': kernel_size, 'stride': stride, 'padding': padding, **({'output_padding': output_padding} if tr_flag else {}), 'dilation': dilation}
         _module = lambda kwargs: (nn.Conv3d if not tr_flag else nn.ConvTranspose3d)(in_channels, in_channels, groups=in_channels, bias=bias, padding_mode=padding_mode, **kwargs)
         self.embeddings = nn.ModuleList([
-            nn.Sequential(_module({k: (0, v, v) if k == 'padding' else (1, v, v) for k, v in _kwargs.items()}), _module({k: (v, 0, 0) if k == 'padding' else (v, 1, 1) for k, v in _kwargs.items()})), # XY-embedding transform.
-            nn.Sequential(_module({k: (v, 0, v) if k == 'padding' else (v, 1, v) for k, v in _kwargs.items()}), _module({k: (0, v, 0) if k == 'padding' else (1, v, 1) for k, v in _kwargs.items()})), # XZ-embedding transform.
-            nn.Sequential(_module({k: (v, v, 0) if k == 'padding' else (v, v, 1) for k, v in _kwargs.items()}), _module({k: (0, 0, v) if k == 'padding' else (1, 1, v) for k, v in _kwargs.items()}))  # YZ-embedding transform.
+            nn.Sequential(_module({k: (0, v, v) if 'padding' in k else (1, v, v) for k, v in _kwargs.items()}), _module({k: (v, 0, 0) if 'padding' in k else (v, 1, 1) for k, v in _kwargs.items()})), # XY-embedding transform.
+            nn.Sequential(_module({k: (v, 0, v) if 'padding' in k else (v, 1, v) for k, v in _kwargs.items()}), _module({k: (0, v, 0) if 'padding' in k else (1, v, 1) for k, v in _kwargs.items()})), # XZ-embedding transform.
+            nn.Sequential(_module({k: (v, v, 0) if 'padding' in k else (v, v, 1) for k, v in _kwargs.items()}), _module({k: (0, 0, v) if 'padding' in k else (1, 1, v) for k, v in _kwargs.items()}))  # YZ-embedding transform.
         ])
         self.key = nn.Conv3d(in_channels, out_channels, 1, bias=False)
         self.query = nn.Conv3d(in_channels, out_channels, 1, bias=False)
