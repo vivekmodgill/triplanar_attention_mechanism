@@ -66,7 +66,7 @@ class BinarySorensenDiceLossFunction(nn.Module):
         Returns:
             torch.Tensor: Binary Sorensen-Dice loss.
         """
-        inputs = torch.atleast_2d(F.Sigmoid(inputs)).flatten(1)
+        inputs = torch.atleast_2d(F.sigmoid(inputs)).flatten(1)
         targets = torch.atleast_2d(targets).flatten(1)
         return 1 - ((2 * (inputs * targets).sum(1) + self.epsilon) / (inputs.sum(1) + targets.sum(1) + self.epsilon)).mean()
 
