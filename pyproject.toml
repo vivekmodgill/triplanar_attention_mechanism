@@ -8,8 +8,8 @@ readme = "README.md"
 packages = [{include = "triplanar_attention_mechanism"}]
 
 [tool.poetry.dependencies]
-python = "^3.8"
-torch = "^2.2.1"
+#python = "^3.8"
+#torch = "^2.2.1"
 
 [build-system]
 requires = ["poetry-core"]
