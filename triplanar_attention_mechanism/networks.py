@@ -53,4 +53,4 @@ class TriplanarAttentionNetwork(nn.Sequential):
         Returns:
             torch.Tensor: Output tensor (N, out_channels or 2 * in_channels[0], D, H, W).
         """
-        return super()(x) if isinstance(super()[-1], nn.Identity) else torch.cat((x, super()(x)), 1)
+        return super()(x) if isinstance(list(self.children())[-1], nn.Identity) else torch.cat((x, super()(x)), 1)
