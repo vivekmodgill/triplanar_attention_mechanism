@@ -28,7 +28,8 @@ class TriplanarAttentionNetwork(nn.Sequential):
         _factor = min(len(in_channels[1:]), 2)
         _kwargs = {'kernel_size': kernel_size, 'stride': stride, 'padding': padding}
         #'output_padding': output_padding, 'dilation': dilation, 'padding_mode': padding_mode}
-        _module = lambda: nn.Identity() if _factor == 1 else TriplanarAttentionNetwork(in_channels[1:], None, negative_slope=negative_slope, **_kwargs)
+        _module = lambda: nn.Identity() if _factor == 1 else TriplanarAttentionNetwork(in_channels[1:], None, **_kwargs)
+        #negative_slope=negative_slope, **_kwargs)
         super().__init__(*(
             TriplanarAttentionLayer(in_channels[0], in_channels[1], **_kwargs),                                     # Input layer.
             nn.LeakyReLU(negative_slope),                                                                           # Input activation.
