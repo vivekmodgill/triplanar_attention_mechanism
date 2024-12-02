@@ -3,7 +3,7 @@ import torch.nn as nn
 import torch.nn.functional as F
 
 
-class Simple3DConvLayer(nn.Module):
+class TriplanarAttentionLayer(nn.Module):
     """
     Simplified 3D convolutional layer.
 
@@ -16,7 +16,7 @@ class Simple3DConvLayer(nn.Module):
         bias (bool, optional): Whether to include bias. Defaults to True.
     """
     def __init__(self, in_channels: int, out_channels: int, kernel_size: int, stride: int = 1, padding: int = 0, bias: bool = True):
-        super(Simple3DConvLayer, self).__init__()
+        super(TriplanarAttentionLayer, self).__init__()
         self.conv3d = nn.Conv3d(
             in_channels =in_channels,
             out_channels=out_channels,
@@ -43,10 +43,3 @@ class Simple3DConvLayer(nn.Module):
         x = self.activation(x)
         return x
 
-
-# Example usage
-if __name__ == "__main__":
-    model         = Simple3DConvLayer(in_channels=1, out_channels=16, kernel_size=3, stride=1, padding=1)
-    input_tensor  = torch.randn(4, 1, 32, 32, 32)  # Batch size of 4, 1 channel, 32x32x32 volume
-    output_tensor = model(input_tensor)
-    print(f"Output shape: {output_tensor.shape}")
