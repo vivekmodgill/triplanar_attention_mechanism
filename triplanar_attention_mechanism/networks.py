@@ -18,13 +18,13 @@ class TriplanarAttentionNetwork(nn.Sequential):
         kernel_size    (int):             Kernel size of triplanar attention layer.
         stride         (int,   optional): Stride of triplanar attention layer.           Defaults to 1.
         padding        (int,   optional): Padding of triplanar attention layer.          Defaults to 0.
-        output_padding (int,   optional): Output padding of triplanar attention layer.   Defaults to 0.
-        dilation       (int,   optional): Dilation of triplanar attention layer.         Defaults to 1.
-        padding_mode   (str,   optional): Padding mode of triplanar attention layer.     Defaults to 'zeros'.
-        negative_slope (float, optional): Negative slope of leaky rectified linear unit. Defaults to .01.
+        #output_padding (int,   optional): Output padding of triplanar attention layer.   Defaults to 0.
+        #dilation       (int,   optional): Dilation of triplanar attention layer.         Defaults to 1.
+        #padding_mode   (str,   optional): Padding mode of triplanar attention layer.     Defaults to 'zeros'.
+        #negative_slope (float, optional): Negative slope of leaky rectified linear unit. Defaults to .01.
     """
     def __init__(self, in_channels: Tuple[int, ...], out_channels: Optional[int], kernel_size: int, stride: int = 1, padding: int = 0) -> None:
-                 #output_padding: int = 0, dilation: int = 1, padding_mode: str = 'zeros', negative_slope: float = .01) -> None:
+        #output_padding: int = 0, dilation: int = 1, padding_mode: str = 'zeros', negative_slope: float = .01) -> None:
         _factor = min(len(in_channels[1:]), 2)
         _kwargs = {'kernel_size': kernel_size, 'stride': stride, 'padding': padding}
         #'output_padding': output_padding, 'dilation': dilation, 'padding_mode': padding_mode}
