@@ -23,7 +23,8 @@ class TriplanarAttentionNetwork(nn.Sequential):
         padding_mode   (str,   optional): Padding mode of triplanar attention layer.     Defaults to 'zeros'.
         negative_slope (float, optional): Negative slope of leaky rectified linear unit. Defaults to .01.
     """
-    def __init__(self, in_channels: Tuple[int, ...], out_channels: Optional[int], kernel_size: int, stride: int = 1, padding: int = 0, output_padding: int = 0, dilation: int = 1, padding_mode: str = 'zeros', negative_slope: float = .01) -> None:
+    def __init__(self, in_channels: Tuple[int, ...], out_channels: Optional[int], kernel_size: int, stride: int = 1, padding: int = 0) -> None:
+                 #output_padding: int = 0, dilation: int = 1, padding_mode: str = 'zeros', negative_slope: float = .01) -> None:
         _factor = min(len(in_channels[1:]), 2)
         _kwargs = {'kernel_size': kernel_size, 'stride': stride, 'padding': padding}
         #'output_padding': output_padding, 'dilation': dilation, 'padding_mode': padding_mode}
